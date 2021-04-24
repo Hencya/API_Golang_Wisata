@@ -4,11 +4,13 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/hencya/go-api-crud/models"
 	"github.com/joho/godotenv"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 )
 
+//SetupDatabaseConnection is creating a new connection to our database
 func SetupDatabaseConnection() *gorm.DB {
 	errEnv := godotenv.Load()
 	if errEnv != nil {
@@ -25,12 +27,12 @@ func SetupDatabaseConnection() *gorm.DB {
 	if err != nil {
 		panic("Failed to create a connection to database")
 	}
-
 	//nanti kita isi modelnya di sini
-	//db.AutoMigrate()
+	db.AutoMigrate(&models.Destination{}, &models.User{})
 	return db
 }
 
+//CloseDatabaseConnection method is closing a connection between your app and your db
 func CloseDatabaseConnection(db *gorm.DB) {
 	dbSQL, err := db.DB()
 	if err != nil {

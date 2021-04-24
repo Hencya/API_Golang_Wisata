@@ -1,7 +1,7 @@
 package models
 
 //User represents users table in database
-type Detination struct {
+type Destination struct {
 	ID          uint64 `gorm:"primary_key:auto_increment" json:"id"`
 	Title       string `gorm:"type:varchar(50)" json:"title"`
 	Description string `gorm:"uniqueIndex;type:varchar(255)" json:"description"`
